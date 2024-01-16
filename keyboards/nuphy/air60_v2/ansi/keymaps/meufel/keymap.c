@@ -28,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC, 	KC_Q,   	KC_W,   	KC_E,  		KC_R,   	KC_T,   	KC_Y,   	KC_U,   	KC_I,   	KC_O,  		KC_P,   	KC_LBRC,	KC_RBRC, 	KC_BSLS,
 	LT(MO(2),KC_TAB), KC_A, KC_S,   	KC_D,  		KC_F,   	KC_G,   	KC_H,   	KC_J,   	KC_K,   	KC_L,  		KC_SCLN,	KC_QUOT, 	            KC_ENT,
 	KC_LSFT,	KC_Z,   	KC_X,   	KC_C,  		KC_V,   	KC_B,   	KC_N,   	KC_M,   	KC_COMM,	KC_DOT,		KC_SLSH,	KC_RSFT,	KC_UP,		LT(MO(2),KC_DEL),
-	KC_LCTL,	KC_LALT,	KC_LGUI,										KC_SPC, 							KC_RGUI,	MO(1),   	KC_LEFT,	KC_DOWN,    KC_RGHT),
+	KC_LCTL,	KC_LALT,	KC_LGUI,										KC_SPC, 							MO(1),      KC_RGUI,  	KC_LEFT,	KC_DOWN,    KC_RGHT),
 
 // layer 1 Mac fn
 [1] = LAYOUT(
@@ -36,14 +36,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	_______, 	LNK_BLE1,  	LNK_BLE2,  	LNK_BLE3,  	LNK_RF,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	DEV_RESET,	SLEEP_MODE, BAT_SHOW,
 	KC_CAPS, 	_______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	            MO(4),
 	_______,    _______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	RGB_SPD,	RGB_SPI,  	_______,	_______,  	RGB_VAI,    _______,
-	_______,	_______,	_______,										_______, 							_______,	_______,   	RGB_MOD,	RGB_VAD,    RGB_HUI),
+	_______,	_______,	_______,										MI_C4,   							_______,	_______,   	RGB_MOD,	RGB_VAD,    RGB_HUI),
 
-// layer 2 Mac Fn+shift
+// layer 2 Mac CAPS
 [2] = LAYOUT(
 	SHIFT_GRV, 	KC_F1,  	KC_F2,  	KC_F3, 		KC_F4,  	KC_F5,  	KC_F6,  	KC_F7,  	KC_F8,  	KC_F9,	    KC_F10, 	VOLDOWN, 	VOLUP, 	    KC_F13,
 	_______, 	_______,  	_______,  	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	_______,    _______,
 	_______, 	_______,   	_______,   	_______,  	_______,   	_______,   	KC_LEFT,   	KC_DOWN,   	KC_UP,   	KC_RIGHT,  	_______,   	_______,	            KC_RETURN,
-	_______,    _______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	SIDE_SPD,	SIDE_SPI,  	_______,	_______,  	SIDE_VAI,    _______,
+	_______,    _______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	SIDE_SPD,	SIDE_SPI,  	_______,	_______,  	SIDE_VAI,    TG(4),
 	_______,	_______,	_______,										_______, 							_______,	_______,   	SIDE_MOD,	SIDE_VAD,    SIDE_HUI),
 
 // layer 3 Win
@@ -54,13 +54,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	KC_LSFT,	KC_Z,   	KC_X,   	KC_C,  		KC_V,   	KC_B,   	KC_N,   	KC_M,   	KC_COMM,	KC_DOT,		KC_SLSH,	KC_RSFT,	KC_UP,		KC_DEL,
 	KC_LCTL,	KC_LGUI,	KC_LALT,										KC_SPC, 							KC_RALT,	MO(4),   	KC_LEFT,	KC_DOWN,    KC_RGHT),
 
-// layer 4 win fn
+// layer 4 MIDI
 [4] = LAYOUT(
-	_______, 	_______,  	_______,  	_______, 	_______,  	_______,  	_______,  	_______,  	_______,  	_______, 	_______, 	_______, 	_______, 	_______,
-	_______, 	_______,  	_______,  	_______, 	_______,  	_______,  	_______,  	_______,  	_______,  	_______, 	_______, 	_______, 	_______, 	_______,
-	_______, 	_______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	            _______,
-	_______, 	_______,  	_______,  	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	_______,    _______,
-	_______,	_______,	_______,										_______, 							_______,	_______,   	_______,	_______,    _______),
+	TG(4), 	    _______,  	_______,  	_______, 	_______,  	_______,  	_______,  	_______,  	_______,  	_______, 	_______, 	_______, 	_______, 	_______,
+	MI_BNDU, 	_______,  	MI_Cs3,  	MI_Ds3, 	_______,  	MI_Fs3,  	MI_Gs3,  	MI_As3,  	_______,  	MI_Cs4, 	MI_Ds4, 	_______, 	_______, 	_______,
+	MI_BNDD, 	MI_C3,   	MI_D3,   	MI_E3,  	MI_F3,   	MI_G3,   	MI_A3,   	MI_B3,   	MI_C4,   	MI_D4,  	MI_E4,   	MI_F4,	                _______,
+	_______, 	MI_OCTD,  	MI_OCTU,  	MI_VELD,  	MI_VELU,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	MI_VELU,    _______,
+	_______,	_______,	_______,										MI_SUST, 							_______,	_______,   	MI_OCTD,	MI_VELD,    MI_OCTU),
 
 // layer 5 win fn+shift
 [5] = LAYOUT(
