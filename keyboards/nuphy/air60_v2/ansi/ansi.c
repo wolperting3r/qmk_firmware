@@ -403,6 +403,7 @@ void m_power_on_dial_sw_scan(void)
 /**
  * @brief  qmk process record
  */
+//bool process_record_user(uint16_t keycode, keyrecord_t *record)
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
     switch (keycode) {
@@ -663,25 +664,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 tap_code16(KC_MPRV); // Intercept hold function to send previous
                 return false;
             }
-            return false;
+            return true;
         case LT(0,KC_8):
             if (!record->tap.count && record->event.pressed) {
                 tap_code16(KC_MPLY); // Intercept hold function to send play
                 return false;
             }
-            return false;
+            return true;
         case LT(0,KC_9):
             if (!record->tap.count && record->event.pressed) {
                 tap_code16(KC_MNXT); // Intercept hold function to send next
                 return false;
             }
-            return false;
+            return true;
         case LT(0,KC_0):
             if (!record->tap.count && record->event.pressed) {
                 tap_code16(KC_F13); // Intercept hold function to send F13 (headphone/speaker switch)
                 return false;
             }
-            return false;
+            return true;
 
         case VOLUP:
             if (record->event.pressed) {
