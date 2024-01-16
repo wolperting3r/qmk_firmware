@@ -48,6 +48,12 @@ bool f_dev_reset_press  = 0;
 bool f_rgb_test_press   = 0;
 bool f_bat_num_show     = 0;
 
+// User
+extern MidiDevice midi_device;
+int volume = 20; // initial volume
+static uint8_t current_MIDI_channelNumber = 6;  // channel number - 1
+static uint8_t volume_MIDI_ccNumber = 7;
+
 uint8_t host_mode;
 host_driver_t *m_host_driver     = 0;
 uint8_t  rf_sw_temp              = 0;
@@ -89,7 +95,6 @@ extern void light_speed_contol(uint8_t fast);
 extern void light_level_control(uint8_t brighten);
 extern void side_colour_control(uint8_t dir);
 extern void side_mode_control(uint8_t dir);
-
 
 /**
  * @brief  gpio initial.
@@ -650,6 +655,44 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 f_bat_num_show = 1;
             } else {
                 f_bat_num_show = 0;
+            }
+            return false;
+
+        case LT(0,KC_7):
+            if (!record->tap.count && record->event.pressed) {
+                tap_code16(KC_MPRV); // Intercept hold function to send previous
+                return false;
+            }
+            return false;
+        case LT(0,KC_8):
+            if (!record->tap.count && record->event.pressed) {
+                tap_code16(KC_MPLY); // Intercept hold function to send play
+                return false;
+            }
+            return false;
+        case LT(0,KC_9):
+            if (!record->tap.count && record->event.pressed) {
+                tap_code16(KC_MNXT); // Intercept hold function to send next
+                return false;
+            }
+            return false;
+        case LT(0,KC_0):
+            if (!record->tap.count && record->event.pressed) {
+                tap_code16(KC_F13); // Intercept hold function to send F13 (headphone/speaker switch)
+                return false;
+            }
+            return false;
+
+        case VOLUP:
+            if (record->event.pressed) {
+                volume += 5;
+                midi_send_cc(&midi_device, current_MIDI_channelNumber, volume_MIDI_ccNumber, volume);
+            }
+            return false;
+        case VOLDOWN:
+            if (record->event.pressed) {
+                volume -= 5;
+                midi_send_cc(&midi_device, current_MIDI_channelNumber, volume_MIDI_ccNumber, volume);
             }
             return false;
 

@@ -47,7 +47,10 @@ enum custom_keycodes {
     BAT_SHOW,
     RGB_TEST,
     SHIFT_GRV,
-    BAT_NUM
+    BAT_NUM,
+
+    VOLUP,
+    VOLDOWN,
 };
 
 
